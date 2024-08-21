@@ -1,0 +1,75 @@
+﻿@model Customer
+
+@{
+    ViewBag.Title = "Customer Details";
+}
+
+<h2>Customer Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            Phone Number
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PhoneNumber
+        </dd>
+        <dt class="col-sm-2">
+            Date of Birth
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DateOfBirth.ToShortDateString()
+        </dd>
+    </dl>
+</div>
+
+<h4>Books Borrowed</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Loan Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var loan in Model.BookLoans)
+        {
+            <tr>
+                <td>@loan.Book.Title</td>
+                <td>@loan.Book.Author</td>
+                <td>@loan.LoanDate.ToShortDateString()</td>
+                <td>
+                    @if (loan.ReturnDate.HasValue)
+                    {
+                        @loan.ReturnDate.Value.ToShortDateString()
+                    }
+                    else
+                    {
+                        <span>Not Returned</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>

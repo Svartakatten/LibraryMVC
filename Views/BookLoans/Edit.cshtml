@@ -1,0 +1,37 @@
+﻿@model LibraryMVC.Models.BookLoan
+
+@{
+    ViewData["Title"] = "Edit Book Loan";
+}
+
+<h1>Edit Book Loan</h1>
+
+<h4>BookLoan</h4>
+<hr />
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="BookId" class="control-label"></label>
+        <select asp-for="BookId" asp-items="ViewBag.BookId" class="form-control"></select>
+        <span asp-validation-for="BookId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerId" class="control-label"></label>
+        <select asp-for="CustomerId" asp-items="ViewBag.CustomerId" class="form-control"></select>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LoanDate" class="control-label"></label>
+        <input asp-for="LoanDate" class="form-control" />
+        <span asp-validation-for="LoanDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReturnDate" class="control-label"></label>
+        <input asp-for="ReturnDate" class="form-control" />
+        <span asp-validation-for="ReturnDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
